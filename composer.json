@@ -1,0 +1,42 @@
+{
+    "name": "davidstrada/tagger",
+    "description": "Eloquent tagging package",
+    "license": "license",
+    "authors": [
+        {
+            "name": "David Strada",
+            "email": "idavid@fastmail.com",
+            "homepage": "https://davidstrada.com"
+        }
+    ],
+    "homepage": "https://github.com/davidstrada/taggy",
+    "keywords": ["Laravel", "Taggy"],
+    "require": {
+        "php": "^7.2.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "orchestra/testbench": "^5.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DavidStrada\\Tagger\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DavidStrada\\Tagger\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DavidStrada\\Tagger\\Providers\\TaggerServiceProvider"
+            ],
+            "aliases": {
+                "Debugbar": "DavidStrada\\Tagger\\Facade\\Tagger"
+            }
+        }
+    }
+}
