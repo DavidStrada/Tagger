@@ -64,17 +64,17 @@ class TaggerServiceProvider extends ServiceProvider
 
         // Publishing the views.
         /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/davidstrada'),
+            __DIR__.'/../../resources/views' => base_path('resources/views/vendor/davidstrada'),
         ], 'tagger.views');*/
 
         // Publishing assets.
         /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/davidstrada'),
+            __DIR__.'/../../resources/assets' => public_path('vendor/davidstrada'),
         ], 'tagger.views');*/
 
         // Publishing the translation files.
         /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/davidstrada'),
+            __DIR__.'/../../resources/lang' => resource_path('lang/vendor/davidstrada'),
         ], 'tagger.views');*/
 
         // Registering package commands.
