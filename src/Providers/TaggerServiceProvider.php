@@ -1,6 +1,6 @@
 <?php
 
-namespace DavidStrada\Tagger;
+namespace DavidStrada\Tagger\Providers;
 
 use DavidStrada\Tagger\Tagger;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +16,7 @@ class TaggerServiceProvider extends ServiceProvider
     {
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'davidstrada');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'davidstrada');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         // Publishing is only necessary when using the CLI.
@@ -32,7 +32,7 @@ class TaggerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/tagger.php', 'tagger');
+        $this->mergeConfigFrom(__DIR__.'/../../config/tagger.php', 'tagger');
 
         // Register the service the package provides.
         $this->app->singleton('tagger', function ($app) {
@@ -59,7 +59,7 @@ class TaggerServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/tagger.php' => config_path('tagger.php'),
+            __DIR__.'/../../config/tagger.php' => config_path('tagger.php'),
         ], 'tagger.config');
 
         // Publishing the views.

@@ -10,9 +10,10 @@
         }
     ],
     "homepage": "https://github.com/davidstrada/taggy",
-    "keywords": ["Laravel", "Taggy"],
+    "keywords": ["Laravel", "Tagger"],
     "require": {
-        "php": "^7.2.5"
+        "php": "^7.2.5",
+        "illuminate/support": "^7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
@@ -38,5 +39,7 @@
                 "Debugbar": "DavidStrada\\Tagger\\Facade\\Tagger"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
