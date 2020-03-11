@@ -47,7 +47,7 @@ class TaggerServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['tagger'];
+        return ['tagger']; // [Tagger::class]
     }
 
     /**
@@ -61,6 +61,11 @@ class TaggerServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../config/tagger.php' => config_path('tagger.php'),
         ], 'tagger.config');
+
+        // Publishes package migrations.
+        $this->publishes([
+            __DIR__.'/../../database/migrations/' => database_path('migrations'),
+        ], 'tagger.migrations');
 
         // Publishing the views.
         /*$this->publishes([
