@@ -3,6 +3,7 @@
 namespace DavidStrada\Tagger;
 
 use DavidStrada\Tagger\Models\Tag;
+use DavidStrada\Tagger\Scopes\TaggableScopesTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Arr;
@@ -11,6 +12,8 @@ use Illuminate\Support\Str;
 
 trait TaggableTrait
 {
+    use TaggableScopesTrait;
+
     /**
     * Get all of the tags for the current Model.
     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
@@ -31,18 +34,6 @@ trait TaggableTrait
     }
 
     /**
-     * Sync Tags to a Model // Increment count.
-     * @param Collection $tags
-     */
-    private function addTags(Collection $tags) : void
-    {
-        $sync = $this->tags()->syncWithoutDetaching($tags);
-
-        collect(Arr::get($sync, 'attached'))
-            ->each(fn($attachedId) => $tags->where('id', $attachedId)->first()->increment('count'));
-    }
-
-    /**
      * @param  array|null
      * @return void
      */
@@ -54,6 +45,29 @@ trait TaggableTrait
         }
 
         $this->removeTags($this->getWorkableTags($tags));
+    }
+
+    /**
+     * Ability to retag a Model
+     * @param  array $tags
+     * @return void
+     */
+    public function retag($tags) : void
+    {
+        $this->removeAllTags();
+        $this->tag($tags);
+    }
+
+    /**
+     * Sync Tags to a Model // Increment count.
+     * @param Collection $tags
+     */
+    private function addTags(Collection $tags) : void
+    {
+        $sync = $this->tags()->syncWithoutDetaching($tags);
+
+        collect(Arr::get($sync, 'attached'))
+            ->each(fn($attachedId) => $tags->where('id', $attachedId)->first()->increment('count'));
     }
 
     /**
@@ -83,6 +97,10 @@ trait TaggableTrait
      */
     private function getWorkableTags($tags) : Collection
     {
+        if (is_string($tags)) {
+            throw new \InvalidArgumentException('must be an instance of Illuminate\Support\Collection|Array, string given');
+        }
+
         if (is_array($tags)) {
             return $this->getTagModel($tags);
         }

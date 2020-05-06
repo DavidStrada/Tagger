@@ -1,18 +1,19 @@
 {
     "name": "davidstrada/tagger",
     "description": "Eloquent tagging package",
-    "license": "license",
+    "license": "MIT",
     "authors": [
         {
             "name": "David Strada",
             "email": "idavid@fastmail.com",
-            "homepage": "https://davidstrada.com"
+            "homepage": "https://davidstrada.com",
+            "role": "Developer"
         }
     ],
     "homepage": "https://github.com/davidstrada/taggy",
     "keywords": ["Laravel", "Tagger"],
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.4",
         "illuminate/support": "^7.0"
     },
     "require-dev": {
@@ -22,23 +23,23 @@
     },
     "autoload": {
         "psr-4": {
-            "DavidStrada\\Tagger\\": "src/"
+            "DavidStrada\\Tagger\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DavidStrada\\Tagger\\Tests\\": "tests/"
+            "DavidStrada\\Tagger\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
                 "DavidStrada\\Tagger\\Providers\\TaggerServiceProvider"
-            ],
-            "aliases": {
-                "Debugbar": "DavidStrada\\Tagger\\Facade\\Tagger"
-            }
+            ]
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true
